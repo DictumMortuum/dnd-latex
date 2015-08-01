@@ -1,0 +1,603 @@
+\documentclass[DIV=14, paper=a4, fontsize=10pt, twocolumn, twoside]{scrartcl}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+\usepackage[cm-default]{fontspec}
+\usepackage{sectsty} % Enables custom section titles
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{atbegshi}
+\usepackage{changepage}
+\usepackage{eso-pic}
+
+\newcommand{\HorRule}{\color{dndblue} \rule{\linewidth}{1pt}} % Defines the gold horizontal rule around the title
+
+\makeatletter
+\let\origsection\section
+\renewcommand\section{\@ifstar{\starsection}{\nostarsection}}
+
+\newcommand\nostarsection[1]
+{\origsection{#1}\vspace{-0.5em}}
+
+\newcommand\starsection[1]
+{\vspace{-0.5cm}\origsection*{#1}\vspace{-0.3cm}}
+\makeatother
+
+% Invisible sections in order to have shorter vertical titles.
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}%
+  %\addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+  \sectionmark{#1}
+}
+
+% Invisible sections in order to have shorter vertical titles.
+\newcommand\listsection[2]{%
+	\invisiblesection{#2}
+	\section*{\color{dndblue} #1}
+}
+
+\newcommand\dndheading[1]{%
+	\renewcommand*{\raggedsection}{\raggedleft}
+	\section*{\color{dndblue} \huge #1}
+	\renewcommand*{\raggedsection}{\raggedright}
+	\vspace{-0.4cm}
+	\HorRule
+	\color{black}
+}
+
+% Remove section number from vertical titles.
+\renewcommand\thesection{}
+
+% Add page number, background images and vertical titles to pages.
+\AddToShipoutPictureBG{%
+  \checkoddpage
+  \ifoddpage
+    \put(0,0){\includegraphics[width=\paperwidth,height=\paperheight]{left.png}}
+    \put(514,41){\makebox[30mm][c]{\huge \color{white} \thepage}}
+    \put(573,705){\rotatebox{-90}{\makebox[30mm][c]{\LARGE \leftmark}}}
+  \else
+    \put(0,0){\includegraphics[width=\paperwidth,height=\paperheight]{right.png}}
+    \put(0,40){\makebox[30mm][c]{\huge \color{white} \thepage}}
+    \put(13,602){\rotatebox{90}{\makebox[30mm][c]{\LARGE \leftmark}}}
+  \fi
+}
+
+\pagestyle{fancy}
+%\setmainfont{Celestia Antiqua}
+%\setsansfont{Pterra}
+\setlist{noitemsep}                         % Remove space between list items.
+\setlist[description]{font=\fontseries{ub}} % Make description list title item bolder.
+\setlength{\columnsep}{1cm}                 % Add space between columns.
+\setlength{\textheight}{25cm}               % Make text fit tighter in page.
+\definecolor{dndblue}{HTML}{003365}         % Colorpicked from PHB 3.5e.
+
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\usepackage{titling} % Allows custom title configuration
+
+\pretitle{\vspace{-60pt} \begin{flushleft} \HorRule \fontsize{50}{50}  
+\color{dndblue} \selectfont} % Horizontal rule before the title
+	
+	\title{WIZARD SPELLS} % Your article title
+\posttitle{\par\end{flushleft}\HorRule} % Whitespace under the title
+
+\date{} % Add a date here if you would like one to appear underneath the title block
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%\maketitle
+%\thispagestyle{empty}
+
+\dndheading{SPELLCASTING}
+
+\listsection{LOREM IPSUM}{LIPSUM}
+
+\lipsum
+\lipsum[1-4]
+
+\dndheading{WIZARD SPELLS}
+
+\listsection{0-LEVEL WIZARD SPELLS (CANTRIPS)}{CANTRIPS}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+\renewcommand{\labelitemi}{Abjur}\item
+\begin{description}
+	\item[Blade Ward:] you gain resistance to physical damage for 1 round.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+	\item[Acid Splash:] 1d6 acid damage to one or two targets. +1d6/tier.
+	\item[Mage Hand:] hand can manipulate small objects.
+	\item[Poison Spray:] 1d12 poison damage to a target. +1d12/tier.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+	\item[True Strike:] you gain advantage on your next attack roll.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+	\item[Friends:] make one creature friendly to you for one minute. Hostile afterwards.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+	\item[Dancing Lights:] create small lights or one glowing form.
+	\item[Fire Bolt:] 1d10 fire damage to a target. +1d10/tier.
+	\item[Light:] make object shine as a torch.
+	\item[Ray of Frost:] ranged spell attack deals 1d8 cold damage (+1d8/tier) to a target, plus 10 ft. reduced movement for one round.
+	\item[Shocking Grasp:] 1d8 lightning damage (+1d8/tier) to a melee target, plus it can’t take reactions for 1 round.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+	\item[Minor Illusion:] creates minor illusion of image OR sound.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+	\item[Chill Touch:] ranged spell attack deals 1d8 necrotic damage (+1d8/tier) to a target, plus it can’t regain HP for 1 round. If undead, also gains disadvantage against you.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+	\item[Mending:] makes small reparis to an object.
+	\item[Message:] send a short message and get reply.
+	\item[Prestidigitation:] performs various harmless magical effects.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}1\textsuperscript{ST}-LEVEL WIZARD SPELLS}{LEVEL 1}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+\item[Alarm\textsuperscript{R}:] mental or audible alarm when intruders enter area.
+\item[Mage Armor:] AC becomes 13+DEX mod for 8 hours.
+\item[Shield:] reaction. +5 AC and immune to M.Missile for one round.
+\item[Protection from Evil and Good:] protects against aberrations, celestials, elementals, fey, fiends, and undead.
+	\end{description}
+	\renewcommand{\labelitemi}{Conj}\item
+	\begin{description}
+\item[Find Familiar\textsuperscript{R}:] conjures a familiar to serve you.
+\item[Fog Cloud:] 20 ft. radius sphere of obscuring fog. +20 ft./level.
+\item[Grease:] 10 ft. area becomes difficult terrain and slippery.
+\item[Tenser’s Floating Disc\textsuperscript{R}:] floating disc can carry up to 500 lbs.
+	\end{description}
+	\renewcommand{\labelitemi}{Div}\item
+	\begin{description}
+\item[Unseen Servant\textsuperscript{R}:] Invisible force can interact with objects.
+\item[Comprehend Languages\textsuperscript{R}:] Understand any language for 1 hour
+\item[Detect Magic\textsuperscript{R}:] Sense magic within 30 ft.
+\item[Identify\textsuperscript{R}:] Learn properties of magic item or magical effects on
+target creature.	
+	\end{description}
+	\renewcommand{\labelitemi}{Ench}\item
+	\begin{description}
+\item[Charm Person:] 1 humanoid (+1/level) becomes friendly to you
+for one hour.
+\item[Sleep:] 5d8 hp (+2d8/level) worth of creatures fall asleep.
+\item[Tasha’s Hideous Laughter:] targer must Wis save or fall prone.
+	\end{description}
+	\renewcommand{\labelitemi}{Evoc}\item
+	\begin{description}
+\item[Burning Hands:] 3d6 fire damage (+1d6/level) in 15 ft. cone.
+\item[Chromatic Orb:] ranged spell attack deals 2d8 acid, cold, fire, poison, thunder or lightning damage (+1d8/level).
+\item[Magic Missile:] 3 darts (+1/level) deal 1d4+1 force damage each
+\item[Thunderwave:] 2d8 thunder damage (+1d8/level) in 15 ft. cube and targets get pushed back 10 ft.
+\item[Witch Bolt:] ranged spell attack deals 1d12 lightning damage (+1d12/level). If maintained as action, deals another 1d12.
+	\end{description}
+	\renewcommand{\labelitemi}{Illus}\item
+	\begin{description}
+\item[Color Spray:] 6d10 hp (+2d10/level) worth of creatures in 15 ft.
+cone are blinded for 1 round.
+\item[Disguise Self:] illusory disguise.
+\item[Illusry Script\textsuperscript{R}:] message can only be read by certain creatures.
+\item[Silent Image:] optical illusion in 15 ft. cube. Can move as action.	
+	\end{description}
+	\renewcommand{\labelitemi}{Necro}\item
+	\begin{description}
+\item[False Life:] gain 1d4+4 temporary hp (+5/level) for 1 hour.
+\item[Ray of Sickness:] ranged spell attack deals 2d8 poison damage (+1d8/level) and target is poisoned for 1 round.
+	\end{description}
+	\renewcommand{\labelitemi}{Trans}\item
+	\begin{description}
+\item[Feather Fall:] Up to five creatures fall at 60 ft/round, taking no falling damage and landing standing.
+\item[Jump:] Creature touched can jump three times as far.
+\item[Longstrider:] increase the speed of one creature/level by 10 ft.
+	\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}2\textsuperscript{ND}-LEVEL WIZARD SPELLS}{LEVEL 2}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Arcane Lock:] locks object magically. +10 DC for opening it.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Cloud of Daggers:] 5–ft. cube is filled with daggers that deal 4d4 slashing damage (+2d4/level) to creatures inside.
+ \item[Flaming Sphere:] 5–ft. diameter ball of flame sheds light, can be controlled, and deals 2d6 fire damage to creatures within 5 ft.
+ \item[Misty Step:] caster teleports 30 ft. within their line of sight.
+ \item[Web:] fills 20–ft. cube with webbing, restraining creatures and creating difficult terrain, and light obscurity.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[Darkvision:] taget gains darkvision for 8 hours.
+ \item[Detect Thoughts:] read surface thoughts of target. Also detects thinking creatures within 30 ft.
+ \item[Locate Object:] caster learns the direction to either a specific object or the closest of a particular kind within 1,000 ft.
+ \item[See Invisibility:] caster can see invisible and ethereal things.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Crown of Madness:] target is charmed and forced to attack a target of your choice each round. Target must be controlled with an action and gets a new save each round.
+ \item[Hold Person:] one humanoid (+1/level within 30 ft.) becomes paralyzed unless it succeds on a Wisdom save.
+ \item[Suggestion:] target is made to follow reasonable course of action.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Continual Flame:] creates heatless, permanent torch–like flame that can be hidden but not quenched.
+ \item[Darkness:] creates 15–ft. radius sphere of darkness that blocks darkvision.
+ \item[Gust of Wind:] 60–ft. lond and 10–ft. wide line of wind pushes creatures, impedes their movement, and disperses gas/mists.
+ \item[Melf ’s Acid Arrow:] ranged spell attack deals 4d4 poison damage (+1d4/level), plus 2d4 poison damage (+1d4/level) on the next turn.
+ \item[Scorching Ray:] fires three rays (+1 ray/level) that each deals 2d6 fire damage.
+ \item[Shatter:] 10–ft. radius sphere deals 3d8 thunder damage (+1d8/ level). Inorganic creatures have disadvantage on their save.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Blur:] enemies that rely on sight have disadvantage on attacks against you.
+ \item[Invisibility:] one touched creature (+1/level) becomes invisible for up to one hour, or until it attacks or casts a spell.
+ \item[Magic Mouth\textsuperscript{R}:] object recites message of up to 25 words when triggering condition occurs.
+ \item[Mirror Image:] creates three illusory duplicates that act as decoys.
+ \item[Nystul’s Magic Aura:] masks or creates a magical aura for a creature or object. Also masks aura for alignment detection.
+ \item[Phantasmal Force:] creates an illusion in target’s mind that is perceived as real, and can even deal up to 1d6 psychic damage. 
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Blindness/Deafness:] one target (+1/level) becomes blinded or deafened, and gets a new save each turn.
+ \item[Gentle Repose\textsuperscript{R}:] corpse does not deacay, and cannot become undead. Its time limit for spells like raise dead is extended.
+ \item[Ray of Enfeeblement:] ranged spell attack cuts target’s Strength based attacks down to half damage.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Alter Self:] digsuises target, grants it aquatic adaptation, or gives it a natural weapon. Enlarge/Reduce: enlarges or shrinks target, granting it bonuses or penalties in combat and physical statistics respectively.
+ \item[Knock:] unlocks one mundane lock, makes door unbarred/ unstuck, or suppresses arcane lock for 10 minutes.
+ \item[Levitate:] levitates creature or object of up to 500 lbs. up to 20 ft. per turn.
+ \item[Magic Weapon:] touched weapon becomes magical for up to one hour. L2: +1, L4: +2, L6: +3.
+ \item[Rope Trick:] creates extradimensional space for up to 8 people.
+ \item[Spider Climb:] target can move freely along walls and ceilings by walking on them, and gains a climbing speed.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}3\textsuperscript{RD}-LEVEL WIZARD SPELLS}{LEVEL 3}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Counterspell:] reaction. Interrupt spell of level 3 and lower (+1/level) being cast nearby, and possibly of higher level.
+ \item[Dispel Magic:] end spell effect of 3rd level or lower (+1/level), and possibly of higher level.
+ \item[Glyph of Warding:] magical trap either deals 5d8 acid, cold, fire, lightning, or thunder damage (+1d8/level) in 20–ft. radius, on unleashes a spell of 3rd level (+1/level) or lower.
+ \item[Magic Circle:] 10–ft. radius, 20–ft. tall cylinder protects vs one or more types of supernatural creatures by blocking entrance, giving disadvantage on attacks, and preventing charm, fear, or possession. Can also be used to trap creature inside. Lasts one hour (+1/level).
+ \item[Nondetenction:] target can’t be perceived by divination magic.
+ \item[Protection from Energy:] willing creature touched has resistance to acid, cold, fire, lightning, or thunder for up to one hour.
+ \item[Remove Curse:] removes all curses from one creature or object. Cursed magic item is still cursed but can be discarded.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Leomund’s Tiny Hut\textsuperscript{R}:] creates a 10–ft. radius dome of force that lasts 8 hours.
+ \item[Sleet Storm:] 40–ft radius, 20–ft. tall cylinder is heavily obscured, douses exposed flames, becomes difficult terrain, and creatures inside may fall prone or have their concentration broken.
+ \item[Stinking Cloud:] 20–ft. sphere of gas obscures vision and creatures inside may lose their action.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[Clairvoyance:] invisible sensor can see or hear for you within one mile.
+ \item[Tongues:] target creature can understand any language, and anything it says universally understood.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Fireball:] 20–ft. radius blast deals 8d6 fire damage (+1d6/level).
+ \item[Lightning Bolt:] 100–ft. line deals 8d6 lightning damage (+1d6/ level) to all targets in its path.
+ \item[Sending:] send 25–word message and get reply from a target anywhere. 5\% chance of failure if target is on another plane.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Fear:] creatures in 30–ft. cone become frightened and flee. They may roll a new save when out of sight from the caster.
+ \item[Hypnotic Pattern:] creatures in 30–ft. cube are charmed, incapacitated, and have 0 speed. Effect is broken if the targets take damage, or if another creature spends its action to do so.
+ \item[Phantasmal Steed\textsuperscript{R}:] creates steed with 100–ft. speed.
+ \item[Major Image:] creates an illusion containing sight, sound, smell, and temperature in 20–ft. cube. Can be moved as an action.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Animate Dead:] creates one skeleton or zombie from a corpse (+2/level), and controls it for 24 hours.
+ \item[Bestow Curse:] target is cursed with various effects.
+ \item[Feign Death\textsuperscript{R}:] willing target appears dead, can’t act, gains resistance to all non-psychic damage, suppresses posions and diseases.
+ \item[Vampiric Touch:] melee spell attack deals 3d6 necrotic damage (+1d6/level), and you regain half that many hp. Can repeat attack on subsequent turns as action for up to one minute.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Blink:] 50\% chance each turn for turning ethereal for one round.
+ \item[Fly:] one willing target (+1/level) gains 60 ft. flying speed.
+ \item[Gaseous Form:] target turns into gas cloud, gaining flying speed 10 ft., resistance to nonmagical damage, advantage on Str, Dex, and Con saves. Also able to pass through small holes, but can’t talk, manipulate, attack, or cast spells.
+ \item[Haste:] willing creature gets double speed, +2 AC, advantage on Dex saves, and can take one additional action each turn to make one Attack, Dash, Disengage, Hide, or Use Object. After the spell ends, target does nothing for one turn.
+ \item[Slow:] up to 6 creatures are slowed, getting half speed, –2 to AC and Dex saves, can’t use reactions, and lose either their action or bonus action each turn.
+ \item[Water Breathing\textsuperscript{R}:] up to 10 willing creatures can breathe water.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}4\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 4}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Banishment:] one target (+1/level) gets banished to other plane.
+ \item[Mordekainen’s Private Sanctum:] area is proof against detection, teleportation, and/or planar travel.
+ \item[Stoneskin:] target gains resistance to nonmagical physical damage.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Conjure Minor Elementals:] summons weak elementals to fight for you.
+ \item[Dimension Door:] short–ranged teleport of caster plus one willing creature.
+ \item[Evard’s Black Tentacles:] 20–ft square becomes difficult terrain, and creatures inside take 3d6 bludgeoning damage and are restrained. Restrained creatures take 3d6 damage each turn.
+ \item[Leomund’s Secret Chest:] hides chest on ethereal plane, which can be retrieved with token replica.
+ \item[Mordekainen’s Faithful Hound:] invisible stationary watchdog barks when Small or larger creatures come within 30 ft. and bites adjacent ones for 4d8 piercing damage.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[Arcane Eye:] invisible magical eye spies for you. Moves at 30 ft.
+ \item[Locate Creature:] caster learns direction to either a specific creature, or the closest of a prticular kind within 1,000 ft.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Confusion:] creatures in 10–ft. (+5/level) sphere become confused.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Fire Shield:] warm/cold shield sheds light, gives resistance to cold/fire, and deals 2d8 fire/cold damage to melee attackers.
+ \item[Ice Storm:] 20–ft. radius, 40–ft. high cylinder deals 2d8 bludgeoning damage (+1d8/level) and 4d6 cold damage to creatures within, and is treated as difficult terrain.
+ \item[Otiluke’s Resilient Sphere:] force sphere encloses Large or smaller creature or object, shielding both ways. Globe can be physically moved.
+ \item[Wall of Fire:] creates wall of fire that deals 5d8 fire damage (+1d8/level) to creatures inside, near it, or passing through it.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Greater Invisibility:] caster or willing creature becomes invisible for up to one minute.
+ \item[Hallucinatory Terrain:] makes natural terrain look like other natural terrain.
+ \item[Phantasmal Killer:] creates illusion of the target’s deepest fear in its mind, frghtening it and dealing 4d10 psychic damage/turn.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Blight:] target takes 8d8 necrotic damage (+1d8/level). Plant creatures and magical plants take maximum damage. Mundane plants automatically die.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Control Water:] control water in 100–ft. cube to create flood, part water, redirect flow, or create whirlpool.
+ \item[Fabricate:] turns raw material into product.
+ \item[Polymorph:] target creature turns into a beast with CR equal to or less than its own CR/level.
+ \item[Stone Shape:] reshapes stone object of either up to medium size or 5–ft. cube or less with limited detail.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}5\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 5}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Planar Binding:] binds a celestial, elemental, fey, or fiend creature to your service.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Cloudkill:] 20–ft spherical cloud moves away from caster at 10 ft./round, and deals 5d8 poison damage to creatures inside.
+ \item[Conjure Elemental:] summons elemental of CR 5 (+1 CR/level) or less. Requires 10–ft. cube of existing element.
+ \item[Creation:] creates temporary object with duration depending on the material created.
+ \item[Teleportation Circle:] creates portal leading to known permanent teleportation circle.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[Contact Other Plane:] ask extraplanar entity up to 5 questions and receive one–word answers, but risk taking 6d6 psychic damage and going insane until the next long rest.
+ \item[Legend Lore:] caster learns lore about person, place, or object.
+ \item[Rary’s Telepathic Bond:] establishes telepathic communication between up to 8 willing creatures.
+ \item[Scrying:] creates invisible sensor near target creature or location.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Dominate Person:] charm and command a humanoid. Target can make a new save to break free each time it takes damage.
+ \item[Geas:] target creature is instructed to do or not do something and takes damage each day it disobeys.
+ \item[Hold Monster:] one creature (+1/level) becomes paralyzed.
+ \item[Modify Memory:] charms target and alters its recent memories.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Bigby’s Hand:] creates large hand of force than can punch for 4d8 damage (+2d8/level), grapple for 2d6+Int mod crushing damage (+2d6/level), push creatures, or block enemy attacks.
+ \item[Cone of Cold:] deals 8d8 cold damage (+1d8/level) in 60–ft cone.
+ \item[Wall of Force:] creates wall or dome of force, immune to damage and dispel magic, but not to disintegrate.
+ \item[Wall of Stone:] creates crudely shapable wall of stone.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Dream:] target receives no benefits from resting and receives 3d6 psychic damage. Dream can be shaped to deliver message or nightmare.
+ \item[Mislead:] turns subject invisible and creates illusory double that uses the original’s senses instead of its own.
+ \item[Seeming:] disguises any number of creatures with illusions.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Animate Objects:] animate up to 10 small objects (+2/level). ‘ Medium objects count as 2, Large as 4, and Huge as 8.
+ \item[Passwall:] creates passage up to 5 ft. x 8 ft., and 20 ft. deep.
+ \item[Telekinesis:] moves creature or object up to 30 ft. per round.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}6\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 6}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Globe of Invulnerability:] 10–ft. radius blocks spell effects of level 5 (+1/level) or lower.
+ \item[Guards and Wards:] wards area with various effects.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Arcane Gate:] create temporary portals, linking two points within 500 ft. of each other.
+ \item[Drawmij’s Instant Summons\textsuperscript{R}:] marks item for later summoning regardless or plane or distance. If item is held/ carried by another creature, you learn by who and where.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[True Seeing:] creature has truesight, notices secret doors hidden by magic, and sees into the ethereal.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Mass Suggestion:] up to 12 creatures follow suggested reasonable course of action. Wisdom save negates.
+ \item[Otto’s Irresistible Dance:] target starts dancing on the spot, using all its movement, having disadvantage on attacks and Dexterity saves, and granting advantage to attackers. Target can make Wisdom save to stop as an action.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Chain Lightning:] primary target plus up to three targets (+1/level) within 30 ft. take 10d8 lightning damage.
+ \item[Contingency:] auto-cast spell of level 5 or lower when set condition occurs.
+ \item[Otiluke’s Freezing Sphere:] deals 10d6 cold damage (+1d6/level) in 60–ft. radius, and freezes water. Can be delayed to detonate later.
+ \item[Sunbeam:] 60–ft. long beam of sunlight deals 6d8 radiant damage and blinds targets hit. Undead and oozes have disadvantage.
+ \item[Wall of Ice:] wall or dome of ice deals 10d6 cold damage (+2d6/level) to creatures in its way, and 5d6 cold damage (+1d6/level) to those who pass through.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Programmed Illusion:] preprogrammed illusion for up to 5 minutes when trigger occurs.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Circle of Death:] deals 8d6 necrotic damage (+2d6/level) in 60–ft. radius sphere.
+ \item[Create Undead:] creates ghouls, ghasts, wights or mummies and controls them for 24 hours.
+ \item[Eyebite:] forces creature to fall asleep, become panicked or become sickened.
+ \item[Magic Jar:] caster’s soul enters object, and can possess others.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Disintegrate:] target takes 10d6+40 force damage, and is disintegrated if reduced to 0 hp.
+ \item[Flesh to Stone:] target becomes restrained and possibly petrified.
+ \item[Move Earth:] slowly move natural earth in up to 40–ft. square area. Area can be changed every 10 minutes.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}7\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 7}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Symbol:] creates a glyph with a varying number of effects.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Mordekainen’s Magnificent Mansion:] creates temporary luxurious extradimensional dwelling.
+ \item[Plane Shift:] teleports yourself and up to 8 willing people to another plane, or baishes a creature there.
+ \item[Teleport:] teleports self and up to 8 willing creatures anywhere on the same plane. Familiarity with destination affects arrival point precision.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Delayed Blast Fireball:] 12d6 fire damage (+1d6/level) in 20– ft. radius blast. +1d6 damage if delayed for at least one round.
+ \item[Forcecage:] creates a 20–ft. cage or 10–ft. box of force, which hinders teleportation out of it.
+ \item[Mordekainen’s Sword:] force sword deals 3d10 force damage with spell attack. Can be controlled with bonus action.
+ \item[Prismatic Spray:] all creatures in 60–ft. cone sustain various random effects.
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Mirage Arcane:] large–scale illusory terrain change.
+ \item[Project Image:] creates illusory duplicate. Can shift senses between self and duplicate as bonus action.
+ \item[Simulacrum:] creates copy with half hp of creature, friendly to you and designated creatures, which obeys your orders.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Finger of Death:] deals 7d8+30 necrotic damage. If target is killed by the spell, it rises as a zombie in the next turn.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Etherealness:] you and your allies enter the Border Ethereal.
+ \item[Reverse Gravity:] reverses gravity in cylinder 100–ft. wide and 100–ft. tall.
+ \item[Sequester:] willing creature or object enters suspended animation and becomes invisible and undetectable until triggering condition occurs.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}8\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 8}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Antimagic Field:] magic doesn’t work in 10–ft. sphere.
+ \item[Mind Blank:] creature touched is immune to psychic damage, mind-reading, divination, and charm.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Demiplane:] creates door leading to a 30–ft. cube demiplane.
+ \item[Incendiary Cloud:] 20–ft. radius cloud of heavily obscuring mist deals 10d8 fire damage/turn (Dex save for half damage).
+ \item[Maze:] banishes creature to demiplane until they escape with DC 20 Intelligence check. Antipathy/Sympathy: object or area attracts or repels a particular kind of intelligent creature for 10 days.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Dominate Monster:] charm and command a creature. Target can make a new save to break free each time it takes damage.
+ \item[Feeblemind:] target takes 4d6 psychic damage and must succeed on an Intelligence save or have its Int and Cha scores reduced to 1, losing spellcasting and communication abilities.
+ \item[Power Word Stun:] target gets stunned if it has 150 or fewer hp.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Sunburst:] 60–ft. radius burst deals 12d6 radiant damage and blinds for 1 minute. Con save halves damage and negates blindness.
+ \item[Telepathy:] creates telepathic link with willing creature while on the same plane.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Clone:] create backup clone, which takes 120 days to grow.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description}
+ \item[Control Weather:] controls weather in 5 mile radius with gradual effect.
+\end{description}
+\end{itemize}
+
+\listsection{\color{dndblue}9\textsuperscript{TH}-LEVEL WIZARD SPELLS}{LEVEL 9}
+
+\begin{itemize}[align=parleft,labelwidth=1cm]
+	\renewcommand{\labelitemi}{Abjur}\item
+	\begin{description}
+ \item[Imprisonment:] target must succeed on a Wisdom save or get trapped indefinitely.
+ \item[Prismatic Wall:] shimmering multicolored wall or sphere sheds light, blinding nearby creatures. Passing through causes several effects on the subject.
+\end{description}
+\renewcommand{\labelitemi}{Conj}\item
+\begin{description}
+ \item[Gate:] creates portal to precise point on other plane. You may summon named creature from the other side, but the creature is not compelled to serve you.
+ \item[Wish:] grants a wish to the caster, but can cause him great distress.
+\end{description}
+\renewcommand{\labelitemi}{Div}\item
+\begin{description}
+ \item[Foresight:] target can’t be surprised and has advantage on attacks, ability checks, and saves. Attackers have disadvantage on attacks.
+\end{description}
+\renewcommand{\labelitemi}{Ench}\item
+\begin{description}
+ \item[Power Word Kill:] target dies if it has 100 hp or fewer.
+\end{description}
+\renewcommand{\labelitemi}{Evoc}\item
+\begin{description}
+ \item[Meteor Swarm:] four 20–ft. spheres deal 20d6 fire and 20d6 bludgeoning damage (Dexterity save for half damage).
+\end{description}
+\renewcommand{\labelitemi}{Illus}\item
+\begin{description}
+ \item[Weird:] all creatures in 30–ft. sphere must succed on a Wisdom save or become frightened. Each affected creature that doesn’t break free on subsequent turns takes 4d10 psychic damage.
+\end{description}
+\renewcommand{\labelitemi}{Necro}\item
+\begin{description}
+ \item[Astral Projection:] project self and up to 8 willing creatures to the Astral Plane.
+\end{description}
+\renewcommand{\labelitemi}{Trans}\item
+\begin{description} 
+ \item[Shapechange:] 
+ \item[Time Stop:] you gain 1d4+1 extra turns. Ends if you interact with another creature, an attended object, or if you move more than 1,000 ft. away.
+ \item[True Polymorph:] turns creature or object into another creature or object.
+\end{description}
+\end{itemize}
+
+\end{document}
+
+
